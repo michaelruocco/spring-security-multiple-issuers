@@ -438,8 +438,8 @@
   "groups": [
     {
       "id": "5ad3c5d8-08f6-4df2-b6b2-6fdd0d282e65",
-      "name": "demo-group-1",
-      "path": "/demo-group-1",
+      "name": "demo-group-2",
+      "path": "/demo-group-2",
       "attributes": {},
       "realmRoles": [],
       "clientRoles": {
@@ -528,7 +528,7 @@
         "user-role"
       ],
       "groups": [
-        "demo-group-1"
+        "demo-group-2"
       ]
     },
     {
@@ -547,7 +547,7 @@
         "user-role"
       ],
       "groups": [
-        "demo-group-1"
+        "demo-group-2"
       ]
     }
   ],
@@ -814,7 +814,7 @@
           "config": {
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "included.custom.audience": "camunda-rest-api"
+            "included.custom.audience": "demo-realm-2-audience"
           }
         },
         {

@@ -814,7 +814,7 @@
           "config": {
             "id.token.claim": "true",
             "access.token.claim": "true",
-            "included.custom.audience": "camunda-rest-api"
+            "included.custom.audience": "demo-realm-1-audience"
           }
         },
         {

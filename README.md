@@ -17,6 +17,31 @@ This repo is used to try and demonstrate how to configure a spring 0Auth2 resour
 with more than one authorization provider / issuer uri. In this particular case we are using
 two different instances of keycloak.
 
+## Running locally
+
+To start up two different instances of keycloak with their own realms and users you can run the docker
+compose command:
+
+```bash
+docker-compose up -d
+```
+
+This will bring up two local instances of keycloak:
+
+* The first on `http://localhost:8097` that contains a realm `demo-realm-1` and two users `demo-user-1` and `demo-user-2` both with passwords `pwd`
+* The second on `http://localhost:8098` that contains a realm `demo-realm-2` and two users `demo-user-3` and `demo-user-4` both with passwords `pwd`
+
+To run the service and have it use both instances of keycloak to perform token validation you can run:
+
+```bash
+./gradlew bootRun
+```
+
+This will start the service on port 8099. If you want to test being able to call the service using either keycloak instance
+as the token issuer then you can import the postman collection at `postman/spring-security-multiple-issuers.postman_collection.json`
+and use the two example requests under each issuer sub folder, each folder is configured with the to generate a token against
+each keycloak instance.
+
 ## Useful Commands
 
 ```gradle

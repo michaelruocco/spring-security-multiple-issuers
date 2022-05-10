@@ -1,0 +1,3 @@
+spring.security.oauth2.resourceserver.jwt.issuer-uris: http://localhost:8097/auth/demo-realm-1,http://localhost:8098/auth/demo-realm-2
+
+logging.level.org.springframework.security: DEBUG

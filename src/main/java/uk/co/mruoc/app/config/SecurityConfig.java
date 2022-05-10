@@ -1,5 +1,6 @@
 package uk.co.mruoc.app.config;
 
+import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
@@ -7,8 +8,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtIssuerAuthenticationManagerResolver;
-
-import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -23,9 +22,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        log.info("configuring jwt issuer authentication manager resolver with issuer uris {}", Arrays.toString(issuerUris));
-        http.authorizeRequests().anyRequest().authenticated()
-                .and().oauth2ResourceServer()
+        log.info(
+                "configuring jwt issuer authentication manager resolver with issuer uris {}",
+                Arrays.toString(issuerUris));
+        http.authorizeRequests()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .oauth2ResourceServer()
                 .authenticationManagerResolver(new JwtIssuerAuthenticationManagerResolver(issuerUris));
     }
 }

@@ -1,3 +1,4 @@
 spring.security.oauth2.resourceserver.jwt.issuer-uris: http://localhost:8097/auth/realms/demo-realm-1,http://localhost:8098/auth/realms/demo-realm-2
+spring.security.oauth2.resourceserver.jwt.audiences: demo-realm-1-audience,demo-realm-2-audience
 
 logging.level.org.springframework.security: DEBUG

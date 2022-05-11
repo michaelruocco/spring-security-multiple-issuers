@@ -448,22 +448,6 @@
         ]
       },
       "subGroups": []
-    },
-    {
-      "id": "f10094bf-5cde-4215-ad0b-0bf6a95e6b94",
-      "name": "COP_ADMIN",
-      "path": "/COP_ADMIN",
-      "attributes": {},
-      "realmRoles": [],
-      "clientRoles": {
-        "client-id-2": [
-          "user-role",
-          "view-users",
-          "query-groups",
-          "query-users"
-        ]
-      },
-      "subGroups": []
     }
   ],
   "defaultRole": {
@@ -517,7 +501,7 @@
       "enabled": true,
       "email": "demo-user-3@hotmail.com",
       "firstName": "demo",
-      "lastName": "user-one",
+      "lastName": "user-three",
       "credentials": [
         {
           "type": "password",
@@ -536,7 +520,7 @@
       "enabled": true,
       "email": "demo-user-4@hotmail.com",
       "firstName": "demo",
-      "lastName": "user two",
+      "lastName": "user four",
       "credentials": [
         {
           "type": "password",

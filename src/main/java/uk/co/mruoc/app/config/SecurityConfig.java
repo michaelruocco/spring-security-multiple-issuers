@@ -3,7 +3,6 @@ package uk.co.mruoc.app.config;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,7 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests(auth -> auth.anyRequest().authenticated())
-                .oauth2ResourceServer().authenticationManagerResolver(buildResolver());
+                .oauth2ResourceServer()
+                .authenticationManagerResolver(buildResolver());
     }
 
     @Bean
@@ -57,5 +57,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         decoder.setJwtValidator(withAudience);
         return decoder;
     }
-
 }

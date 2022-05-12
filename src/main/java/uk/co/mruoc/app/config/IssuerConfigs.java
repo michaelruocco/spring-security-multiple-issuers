@@ -1,12 +1,10 @@
 package uk.co.mruoc.app.config;
 
-import lombok.RequiredArgsConstructor;
+import java.util.ArrayList;
+import java.util.Collection;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 @Configuration
 public class IssuerConfigs {
@@ -16,5 +14,4 @@ public class IssuerConfigs {
     public Collection<IssuerConfig> issuers() {
         return new ArrayList<>();
     }
-
 }

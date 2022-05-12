@@ -17,6 +17,12 @@ This repo is used to try and demonstrate how to configure a spring 0Auth2 resour
 with more than one authorization provider / issuer uri. In this particular case we are using
 two different instances of keycloak.
 
+## Running tests
+
+```bash
+./gradlew clean spotlessApply build integrationTest
+```
+
 ## Running locally
 
 To start up two different instances of keycloak with their own realms and users you can run the docker

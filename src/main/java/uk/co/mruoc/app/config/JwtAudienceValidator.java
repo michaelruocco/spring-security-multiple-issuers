@@ -1,15 +1,14 @@
 package uk.co.mruoc.app.config;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.OAuth2TokenValidator;
 import org.springframework.security.oauth2.core.OAuth2TokenValidatorResult;
 import org.springframework.security.oauth2.jwt.Jwt;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Slf4j

@@ -25,6 +25,7 @@ public class JwtAudienceValidator implements OAuth2TokenValidator<Jwt> {
         if (isValid(jwt.getAudience())) {
             return OAuth2TokenValidatorResult.success();
         }
+        log.info("jwt audience is invalid");
         return OAuth2TokenValidatorResult.failure(buildError());
     }
 

@@ -1,10 +1,10 @@
 package uk.co.mruoc.app.config;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,17 +22,10 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtIssuerAuthenticationManagerResolver;
 
 @Configuration
-
+@RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final String[] issuerUris;
-    private final String[] audiences;
-
-    public SecurityConfig(@Value("${spring.security.oauth2.resourceserver.jwt.issuer-uris}") String[] issuerUris,
-                          @Value("${spring.security.oauth2.resourceserver.jwt.audiences}") String[] audiences) {
-        this.issuerUris = issuerUris;
-        this.audiences = audiences;
-    }
+    private final Collection<IssuerConfig> issuers;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -47,19 +40,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private JwtIssuerAuthenticationManagerResolver buildResolver() {
         Map<String, AuthenticationManager> managers = new HashMap<>();
-        for (String issuer : issuerUris) {
+        for (IssuerConfig issuer : issuers) {
             JwtDecoder decoder = toDecoder(issuer);
             JwtAuthenticationProvider provider = new JwtAuthenticationProvider(decoder);
             provider.setJwtAuthenticationConverter(new JwtAuthenticationConverter());
-            managers.put(issuer, provider::authenticate);
+            managers.put(issuer.getUri(), provider::authenticate);
         }
         return new JwtIssuerAuthenticationManagerResolver(managers::get);
     }
 
-    private NimbusJwtDecoder toDecoder(String issuerUri) {
-        NimbusJwtDecoder decoder = JwtDecoders.fromOidcIssuerLocation(issuerUri);
-        OAuth2TokenValidator<Jwt> audienceValidator = new JwtAudienceValidator(audiences);
-        OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer(issuerUri);
+    private NimbusJwtDecoder toDecoder(IssuerConfig issuer) {
+        NimbusJwtDecoder decoder = JwtDecoders.fromOidcIssuerLocation(issuer.getUri());
+        OAuth2TokenValidator<Jwt> audienceValidator = new JwtAudienceValidator(issuer.getAudience());
+        OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer(issuer.getUri());
         OAuth2TokenValidator<Jwt> withAudience = new DelegatingOAuth2TokenValidator<>(withIssuer, audienceValidator);
         decoder.setJwtValidator(withAudience);
         return decoder;

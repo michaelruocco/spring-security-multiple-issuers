@@ -19,7 +19,6 @@ plugins {
     id "org.springframework.boot" version "${springBootVersion}"
     id "io.spring.dependency-management" version "1.0.11.RELEASE"
     id "com.bmuschko.docker-remote-api" version "7.3.0"
-    id "com.avast.gradle.docker-compose" version "0.16.3"
     id "org.unbroken-dome.test-sets" version "4.0.0"
 }
 
@@ -30,6 +29,8 @@ ext {
     lombokVersion = "1.18.24"
 
     junitVersion = "5.8.2"
+
+    imageName = "michaelruocco/${project.name}"
 }
 
 scmVersion {
@@ -73,8 +74,33 @@ dependencies {
     integrationTestImplementation "com.github.michaelruocco:rest-client:0.1.8"
 }
 
+springBoot {
+    buildInfo()
+}
+
 bootRun {
     jvmArgs = [ "-Dserver.port=8099" ]
+}
+
+docker {
+    registryCredentials {
+        username.set(System.getenv("DOCKER_USERNAME"))
+        password.set(System.getenv("DOCKER_PASSWORD"))
+    }
+}
+
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
+
+task buildImage(type: DockerBuildImage) {
+    inputDir.set(file("."))
+    images.add("${imageName}:${version}")
+    images.add("${imageName}:latest")
+    buildArgs = ["VERSION": version]
+}
+
+task pushImage(type: DockerPushImage) {
+    images.set(buildImage.images)
 }
 
 javadoc.options.addStringOption('Xdoclint:none', '-quiet')

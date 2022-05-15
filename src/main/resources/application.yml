@@ -6,4 +6,5 @@ spring.security.oauth2.resourceserver:
       audience: ${auth.issuer.2.audience:demo-realm-2-audience}
 
 logging.level:
+  uk.co.mruoc.app.config: DEBUG
   org.springframework.security: DEBUG

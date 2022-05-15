@@ -25,8 +25,8 @@ two different instances of keycloak.
 
 ## Running locally
 
-To start up two different instances of keycloak with their own realms and users you can run the docker
-compose command:
+To start up two different instances of keycloak with their own realms and users you can run the
+docker compose command:
 
 ```bash
 docker-compose up -d
@@ -48,6 +48,51 @@ as the token issuer then you can import the postman collection at `postman/sprin
 and use the two example requests under each issuer sub folder, each folder is configured with the to generate a token against
 each keycloak instance.
 
+* For the first keycloak instance you can use usernames `demo-user-1` and `demo-user-2` both with the password `pwd`
+* For the second keycloak instance you can use usernames `demo-user-3` and `demo-user-4` both with the password `pwd`
+
+## Building docker image locally
+
+To build the docker image locally you can run the following commands:
+
+```bash
+./gradlew clean bootJar buildImage currentVersion
+```
+
+This will build a docker image using the current version number that will also be printed
+to the console by this command.
+
+## Running docker image locally
+
+To run the docker image locally you can run the following command, assuming you have run the
+command to build the docker image locally beforehand:
+
+```bash
+docker-compose --profile local-app-docker up -d
+```
+
+This will start the service on port 8099 in the same way the `./gradlew bootRun` command does,
+the only difference in this case is that the application is running inside docker, rather than
+directly on the local machine.
+
+*Note* in order for this example to work locally you will also need to updated your `/etc/hosts`
+file to add the following two entries:
+
+```bash
+127.0.0.1       keycloak-1
+127.0.0.1       keycloak-2
+```
+
+You will also need to update the postman collection so that the Auth URL and Access Token URL
+so they both use the appropriate keycloak host name rather than just localhost e.g:
+
+* `http://keycloak-1:8097`
+* `http://keycloak-2:8098`
+
+if you do not do the two steps defined above the authentication will fail because the
+issuer (iss) claim in the token will not match the issuer uri configured inside the
+application.
+
 ## Useful Commands
 
 ```gradle
@@ -56,7 +101,6 @@ each keycloak instance.
 // formats code
 // builds code
 // runs tests
-// checks for gradle issues
 // checks dependency versions
-./gradlew clean currentVersion dependencyUpdates lintGradle spotlessApply build
+./gradlew clean currentVersion dependencyUpdates spotlessApply build
 ```

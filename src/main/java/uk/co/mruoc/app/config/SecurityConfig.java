@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,6 +23,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtIss
 
 @Configuration
 @RequiredArgsConstructor
+@Slf4j
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final Collection<IssuerConfig> issuers;
@@ -41,6 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private JwtIssuerAuthenticationManagerResolver buildResolver() {
         Map<String, AuthenticationManager> managers = new HashMap<>();
         for (IssuerConfig issuer : issuers) {
+            log.debug("setting up issuer config for {}", issuer.getUri());
             JwtDecoder decoder = toDecoder(issuer);
             JwtAuthenticationProvider provider = new JwtAuthenticationProvider(decoder);
             provider.setJwtAuthenticationConverter(new JwtAuthenticationConverter());

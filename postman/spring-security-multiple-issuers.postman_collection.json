@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9adcd74f-2abe-4b32-99bb-4a58d391af20",
+		"_postman_id": "ecfd2ef1-1b0a-4a80-9028-e3dd5bf3dbdc",
 		"name": "spring-security-multiple-issuers",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -10,6 +10,19 @@
 			"item": [
 				{
 					"name": "widgets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"should return ok status\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
@@ -126,6 +139,19 @@
 			"item": [
 				{
 					"name": "widgets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"should return ok status\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -150,22 +176,22 @@
 				"oauth2": [
 					{
 						"key": "clientSecret",
-						"value": "client-secret-1",
+						"value": "client-secret-2",
 						"type": "string"
 					},
 					{
 						"key": "clientId",
-						"value": "client-id-1",
+						"value": "client-id-2",
 						"type": "string"
 					},
 					{
 						"key": "accessTokenUrl",
-						"value": "http://localhost:8098/auth/realms/demo-realm-1/protocol/openid-connect/token",
+						"value": "http://localhost:8098/auth/realms/demo-realm-2/protocol/openid-connect/token",
 						"type": "string"
 					},
 					{
 						"key": "authUrl",
-						"value": "http://localhost:8098/auth/realms/demo-realm-1/protocol/openid-connect/auth",
+						"value": "http://localhost:8098/auth/realms/demo-realm-2/protocol/openid-connect/auth",
 						"type": "string"
 					},
 					{

@@ -34,8 +34,8 @@ docker-compose up -d
 
 This will bring up two local instances of keycloak:
 
-* The first on `http://localhost:8097` that contains a realm `demo-realm-1` and two users `demo-user-1` and `demo-user-2` both with passwords `pwd`
-* The second on `http://localhost:8098` that contains a realm `demo-realm-2` and two users `demo-user-3` and `demo-user-4` both with passwords `pwd`
+*   The first on `http://localhost:8097` that contains a realm `demo-realm-1` and two users `demo-user-1` and `demo-user-2` both with passwords `pwd`
+*   The second on `http://localhost:8098` that contains a realm `demo-realm-2` and two users `demo-user-3` and `demo-user-4` both with passwords `pwd`
 
 To run the service and have it use both instances of keycloak to perform token validation you can run:
 
@@ -48,8 +48,8 @@ as the token issuer then you can import the postman collection at `postman/sprin
 and use the two example requests under each issuer sub folder, each folder is configured with the to generate a token against
 each keycloak instance.
 
-* For the first keycloak instance you can use usernames `demo-user-1` and `demo-user-2` both with the password `pwd`
-* For the second keycloak instance you can use usernames `demo-user-3` and `demo-user-4` both with the password `pwd`
+*   For the first keycloak instance you can use usernames `demo-user-1` and `demo-user-2` both with the password `pwd`
+*   For the second keycloak instance you can use usernames `demo-user-3` and `demo-user-4` both with the password `pwd`
 
 ## Building docker image locally
 
@@ -86,8 +86,8 @@ file to add the following two entries:
 You will also need to update the postman collection so that the Auth URL and Access Token URL
 so they both use the appropriate keycloak host name rather than just localhost e.g:
 
-* `http://keycloak-1:8097`
-* `http://keycloak-2:8098`
+*   `http://keycloak-1:8097`
+*   `http://keycloak-2:8098`
 
 if you do not do the two steps defined above the authentication will fail because the
 issuer (iss) claim in the token will not match the issuer uri configured inside the

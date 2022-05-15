@@ -3,7 +3,7 @@
 [![Build](https://github.com/michaelruocco/spring-security-multiple-issuers/workflows/pipeline/badge.svg)](https://github.com/michaelruocco/spring-security-multiple-issuers/actions)
 [![codecov](https://codecov.io/gh/michaelruocco/spring-security-multiple-issuers/branch/master/graph/badge.svg?token=FWDNP534O7)](https://codecov.io/gh/michaelruocco/spring-security-multiple-issuers)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/272889cf707b4dcb90bf451392530794)](https://www.codacy.com/gh/michaelruocco/spring-security-multiple-issuers/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=michaelruocco/spring-security-multiple-issuers&amp;utm_campaign=Badge_Grade)
-[![BCH compliance](https://bettercodehub.com/edge/badge/michaelruocco/spring-security-multiple-issuers?branch=master)](https://bettercodehub.com/)
+[![BCH compliance](https://bettercodehub.com/edge/badge/michaelruocco/spring-security-multiple-issuers?branch=master)](https://bettercodehub.com/results/michaelruocco/spring-security-multiple-issuers)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_spring-security-multiple-issuers&metric=alert_status)](https://sonarcloud.io/dashboard?id=michaelruocco_spring-security-multiple-issuers)
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_spring-security-multiple-issuers&metric=sqale_index)](https://sonarcloud.io/dashboard?id=michaelruocco_spring-security-multiple-issuers)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=michaelruocco_spring-security-multiple-issuers&metric=coverage)](https://sonarcloud.io/dashboard?id=michaelruocco_spring-security-multiple-issuers)

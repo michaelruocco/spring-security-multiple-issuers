@@ -56,7 +56,7 @@ each keycloak instance.
 To build the docker image locally you can run the following commands:
 
 ```bash
-./gradlew clean bootJar buildImage currentVersion
+./gradlew clean buildImage currentVersion
 ```
 
 This will build a docker image using the current version number that will also be printed

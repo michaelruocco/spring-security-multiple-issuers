@@ -92,7 +92,9 @@ docker {
 import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
 import com.bmuschko.gradle.docker.tasks.image.DockerPushImage
 
+
 task buildImage(type: DockerBuildImage) {
+    dependsOn bootJar
     inputDir.set(file("."))
     images.add("${imageName}:${version}")
     images.add("${imageName}:latest")
@@ -182,7 +184,7 @@ publishing {
             from components.java
             pom.withXml {
                 def root = asNode()
-                root.appendNode("description", "Template repo to speed up creating new library projects")
+                root.appendNode("description", "Example repo for configuring a spring service with multiple authorization issuers")
                 root.appendNode("name", project.name)
                 root.appendNode("url", gitUrl)
                 root.children().last() + pomConfig
